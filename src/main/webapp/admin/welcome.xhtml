@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/portalTemplate.xhtml">
+
+            <ui:define name="title">
+                ADMIN WELCOME
+            </ui:define>
+
+            <ui:define name="body">
+
+                <h:panelGroup class="row">
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="customerAll" value="ALL CUSTOMERS" /> <br/>
+                    </h:panelGroup>
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="employeeAll" value="ALL EMPLOYEES" /> <br/>
+                    </h:panelGroup>
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="product" value="PROUCT MODULE" />
+                    </h:panelGroup>
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="salesALL" value="ALL SALES REPORT" />
+                    </h:panelGroup>
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="orderALL" value="ALL ORDERS REPORT" />
+                    </h:panelGroup>
+
+                </h:panelGroup>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

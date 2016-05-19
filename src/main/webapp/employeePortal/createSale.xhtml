@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./../WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        CREATE SALE
+    </ui:define>
+
+    <ui:define name="body">
+        <h4> Select Single Check box and Process to Sale </h4>
+        <h:form>
+            <div class="row">
+                <div>
+
+                    <h:dataTable class="table table-hover table-striped" value="#{orderService.findAll()}" var="order" >
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Select "/></f:facet>
+                            <h:selectBooleanCheckbox value="#{saleBean.checked[order.id]}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Order ID"/></f:facet>
+                            <h:outputText value="#{order.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Customer Name"/></f:facet>
+                            <h:outputText value="#{order.customer.cust_first_name}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Order Price in $"/></f:facet>
+                            <h:outputText value="#{order.ordr_qty}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Order SATUS"/></f:facet>
+                            <h:outputText value="#{order.ordr_status}"/>
+                        </h:column>
+
+                    </h:dataTable>
+
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <h:outputLabel for="saleNote" value="Sale Note" />
+                            <h:selectOneMenu id="saleNote" value="#{saleBean.sale.sales_note}">
+                                <f:selectItem itemValue="SHIPPED BY FEDEX" itemLabel="SHIPPED BY FEDEX" />
+                                <f:selectItem itemValue="SHIPPED BY USPS" itemLabel="SHIPPED BY USPS" />
+
+                            </h:selectOneMenu>
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <h:outputLabel for="orderStatus" value="Order Status" />
+                            <h:selectOneMenu id="orderStatus" value="#{saleBean.order.ordr_status}">
+                                <f:selectItem itemValue="PROCESSED" itemLabel="PROCESSED" />
+                                <f:selectItem itemValue="ONHOLD" itemLabel="ONHOLD" />
+
+                            </h:selectOneMenu>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <h:commandButton action="#{saleBean.executeSave()}" class="button expand" value="SAVE"/>
+                        </div>
+                        <div class="large-12 columns">
+                            <h:button class="button expand" outcome="welcome" value="BACK" />
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

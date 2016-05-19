@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/publicTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+
+
+    </ui:define>
+
+    <ui:define name="body">
+        <h3 style="text-align: center">Welcome to Ankith Jain Jewelry Store Login</h3>
+        <br/>
+        <div class="large-3 large-centered columns">
+            <div class="login-box">
+                <div class="row">
+                    <div class="large-12 columns">
+
+
+                        <h:form>
+                            <div class="row">
+                                <div class="large-12 columns">
+
+                                    <h:inputText binding="#{jUsername}" class="#{not jUsername.valid ? 'error' : ''}" p:placeholder="Enter Username" id= "j_username" value="#{loginBean.username}"/> 
+                                    <ui:fragment rendered="#{not jUsername.valid}">
+                                        <small class="error"><h:message for="j_username"/></small>
+                                    </ui:fragment>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <h:inputSecret binding="#{jPassword}" class="#{not jPassword.valid ? 'error' : ''}" p:placeholder="Enter Password" id= "j_password" value="#{loginBean.password}"/> 
+                                    <ui:fragment rendered="#{not jPassword.valid}">
+                                        <small class="error"><h:message for="j_password"/></small>
+                                    </ui:fragment>
+
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 large-centered columns">
+
+                                    <h:commandButton class="button expand" action="#{loginBean.doLogin()}" value="Login"/>
+                                </div>
+                            </div>
+
+                        </h:form>
+                        <div class="row">
+                            <div class="large-12 large-centered columns">
+                                <h:link class="button expand" value="Signup as Customer" outcome="/registerCustomer.xhtml"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 large-centered columns">
+                                <h:link class="button expand" value="Signup as Employee" outcome="/registerEmployee.xhtml"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 large-centered columns">
+                                <a href="/ajain62-fp/JavaDoc/apidocs/index.html" target="_blank"><strong>CLICK FOR <u>JAVA DOC</u></strong></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </ui:define>
+
+</ui:composition>

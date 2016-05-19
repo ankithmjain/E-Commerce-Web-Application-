@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="products"/>
+        <cc:attribute name="prodEdit" type="java.lang.Boolean" required="false" default="false" />
+        <cc:attribute name="purchaseAction" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+
+        <div class="row">
+            <div class="large-12 columns">
+
+                <h:dataTable class="table table-hover table-striped" value="#{cc.attrs.products}" var="product"> 
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="ID"/></f:facet>
+                        <h:outputText value="#{product.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Product Name"/></f:facet>
+
+                        <h:outputText value="#{product.prod_name}"/>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Product Type"/></f:facet>
+                        <h:outputText value="#{product.prod_type}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Product Price in USD"/></f:facet>
+                        <h:outputText value="#{product.prod_price}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Product Price in INR"/></f:facet>
+                        <h:outputText value="#{product.prod_price}">
+                            <f:converter converterId="rupeeConverter"></f:converter>
+                        </h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Prod Updated on"/></f:facet>
+                        <h:outputText value="#{product.lastUpdatedDate}">
+                            <f:convertDateTime type="both" dateStyle="short" timeStyle="full"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column rendered="#{cc.attrs.prodEdit}">
+                        <f:facet name="header" > <h:outputText value="UPDATE"/></f:facet>
+                        <h:form> 
+                            <h:commandButton action="#{productBean.doUpdate(product)}" class="btn btn-primary btn-lg" value="Update"/>
+                        </h:form> 
+
+                    </h:column>
+                    <h:column rendered="#{cc.attrs.prodEdit}">
+                        <f:facet name="header" > <h:outputText value="DELETE"/></f:facet>
+                        <h:form> 
+                            <h:commandButton action="#{productBean.doDelete(product)}" class="btn btn-primary btn-lg" value="Delete"/>
+                        </h:form> 
+
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+    </cc:implementation>
+</html>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="employee" type="edu.iit.sat.itmd4515.ajain62.fp.domain.Employee" required="true" />
+        <cc:attribute name="readonly" type="java.lang.Boolean" required="false" default="true" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()"/> 
+
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="id" value="Employee Id : #{cc.attrs.employee.id}" />
+                    <h:inputHidden id="id" value="#{cc.attrs.employee.id}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="emp_first_name" value="Employee First Name :" />
+                    <h:inputText p:placeholder="Emp First Name"  id="emp_first_name" value="#{cc.attrs.employee.emp_first_name}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="emp_last_name" value="Employee Last Name :" />
+                    <h:inputText p:placeholder="Emp Last Name"  id="emp_last_name" value="#{cc.attrs.employee.emp_last_name}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="emp_email" value="Employee Email :" />
+                    <h:inputText p:placeholder="Emp Email"  id="emp_email" value="#{cc.attrs.employee.emp_email}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="emp_ph" value="Employee Phone :" />
+                    <h:inputText p:placeholder="Emp Phone"  id="emp_ph" value="#{cc.attrs.employee.emp_ph}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="addrs_city" value="Employee City :" />
+                    <h:inputText p:placeholder="Emp City"  id="addrs_city" value="#{cc.attrs.employee.address.addrs_city}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="addrs_state" value="Employee State :" />
+                    <h:inputText p:placeholder="Emp State"  id="addrs_state" value="#{cc.attrs.employee.address.addrs_state}" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="addrs_country" value="Employee Country :" />
+                    <h:inputText p:placeholder="Emp Country"  id="addrs_country" value="#{cc.attrs.employee.address.addrs_country}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="addrs_zip" value="Employee Zipcode :" />
+                    <h:inputText p:placeholder="Emp Zipcode"  id="addrs_zip" value="#{cc.attrs.employee.address.addrs_zip}" />
+                </div>
+            </div>
+
+
+            <ui:fragment rendered="#{not cc.attrs.readonly}">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <h:commandButton action="#{cc.attrs.action}" class="button expand" value="Save"/>
+                    </div>
+                </div>
+            </ui:fragment>
+        </h:form>
+    </cc:implementation>
+</html>

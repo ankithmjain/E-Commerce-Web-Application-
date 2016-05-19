@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/portalTemplate.xhtml">
+
+            <ui:define name="title">
+                Employee Portal WELCOME
+            </ui:define>
+
+            <ui:define name="body">
+
+                <h:panelGroup class="row">
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="editEmployee" value="VIEW /EDIT YOUR PROFILE" /> <br/>
+                    </h:panelGroup>
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="product" value="PROUCT MODULE" />
+                    </h:panelGroup>
+
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="createSale" value="PROCESS ORDER TO SALE MODULE" />
+                    </h:panelGroup>
+
+                    <h:panelGroup class="col-sm-6">
+                        <h:button class="button expand" outcome="sales" value="SALES REPORT" />
+                    </h:panelGroup>
+
+                </h:panelGroup>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

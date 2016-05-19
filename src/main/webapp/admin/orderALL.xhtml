@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        ALL STORE ORDERS
+    </ui:define>
+
+    <ui:define name="body">
+        <h:dataTable class="table table-hover table-striped" value="#{orderService.findAll()}" var="order" >
+
+            <h:column>
+                <f:facet name="header"><h:outputText value="Order ID"/></f:facet>
+                <h:outputText value="#{order.id}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header"><h:outputText value="Order Date"/></f:facet>
+                <h:outputText value="#{order.lastUpdatedDate}">
+                    <f:convertDateTime type="both" dateStyle="short" timeStyle="full"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Customer Name"/></f:facet>
+                <h:outputText value="#{order.customer.cust_first_name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header"><h:outputText value="Order Price in USD"/></f:facet>
+                <h:outputText value="#{order.ordr_qty}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Order SATUS"/></f:facet>
+                <h:outputText value="#{order.ordr_status}"/>
+            </h:column>
+
+        </h:dataTable>
+
+        <div class="large-12 columns">
+            <h:button class="button" outcome="welcome" value="BACK" />
+        </div>
+    </ui:define>
+
+</ui:composition>

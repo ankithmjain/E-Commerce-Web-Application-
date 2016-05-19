@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="employee" />
+
+
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div class="row">
+            <div>
+                <h:dataTable class="table table-hover table-striped" value="#{cc.attrs.employee}" var="emp"> 
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="ID"/></f:facet>
+                        <h:outputText value="#{emp.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="First Name"/></f:facet>
+                        <h:outputText value="#{emp.emp_first_name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Last Name"/></f:facet>
+                        <h:outputText value="#{emp.emp_last_name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Email"/></f:facet>
+                        <h:outputText value="#{emp.emp_email}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Phone"/></f:facet>
+                        <h:outputText value="#{emp.emp_ph}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Address"/></f:facet>
+                        <h:outputText value="#{emp.address.addrs_city}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="State"/></f:facet>
+                        <h:outputText value="#{emp.address.addrs_state}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Country"/></f:facet>
+                        <h:outputText value="#{emp.address.addrs_country}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" > <h:outputText value="Zipcode"/></f:facet>
+                        <h:outputText value="#{emp.address.addrs_zip}"/>
+                    </h:column>
+
+
+
+                </h:dataTable>
+
+
+            </div>
+
+        </div>
+
+
+
+    </cc:implementation>
+</html>

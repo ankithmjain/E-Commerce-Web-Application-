@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./../WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <ui:define name="title">
+
+        #{not empty orderBean.order.id ? "Update Order" : "Create Order" } 
+    </ui:define>
+
+    <ui:define name="body">
+        <script >
+
+            function updateTotal() {
+
+                var total = 0;
+                var i = 1;
+                var table = document.getElementById("formId:productid");
+
+                while (row = table.rows[i++]) {
+                    if (row.cells[0].children[0].checked == true) {
+
+                        total = total + parseInt(row.cells[3].children[0].innerText);
+                    }
+
+                }
+
+                console.log(total);
+                document.getElementById("formId:orderQty").value = total;
+            }
+
+        </script>
+
+
+
+        <h:form id="formId">
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:dataTable   value="#{productService.findAll()}" id="productid" class="table table-hover table-striped" var="product">
+
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Select to Buy"/></f:facet>
+                            <h:selectBooleanCheckbox id="checkboxid"  onchange="updateTotal()"  value="#{orderBean.checked[product.id]}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Product Id"/></f:facet>
+                            <h:outputText value="#{product.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Product Name"/></f:facet>
+                            <h:outputText value="#{product.prod_name}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Product Price in USD"/></f:facet>
+                            <h:outputText id ="priceid" value="#{product.prod_price}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Product Price in INR"/></f:facet>
+                            <h:outputText  value="#{product.prod_price}" >
+                                <f:converter converterId="rupeeConverter"></f:converter>
+                            </h:outputText>
+
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Product Type"/></f:facet>
+                            <h:outputText value="#{product.prod_type}" />
+                        </h:column>
+                    </h:dataTable>		
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="id" value="Order ID #{orderBean.order.id}" rendered="#{not empty orderBean.order.id}" />
+                    <h:inputHidden id="id" value="#{orderBean.order.id}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="orderDesc" value="Message to Seller" />
+                    <h:inputText p:placeholder="Optional" id="orderDesc" value="#{orderBean.order.ordr_desc}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="ordStatus" value="Order Status" />
+                    <h:selectOneMenu id="ordStatus" value="#{orderBean.order.ordr_status}"  >
+                        <f:selectItem itemValue="OPEN" itemLabel="OPEN" />
+                    </h:selectOneMenu>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="orderQty" value="" />
+                    <h:inputHidden p:placeholder="Order Price" id="orderQty" value="#{orderBean.order.ordr_qty}"  />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+
+                    <h:commandButton action="#{orderBean.executeSave()}" class="button expand" value="Save"/>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="large-12 columns">
+                    <h:button class="button" outcome="welcome" value="BACK" />
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
